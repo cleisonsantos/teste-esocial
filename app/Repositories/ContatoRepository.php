@@ -12,4 +12,9 @@ class ContatoRepository
     {
         return $this->model::create($dados);
     }
+
+    public function retornaTodosContatos()
+    {
+        return $this->model::all();
+    }
 }
