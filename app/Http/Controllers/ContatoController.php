@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContatoRequest;
 use App\Http\Requests\UpdateContatoRequest;
 use App\Models\Contato;
+use App\Services\ContatoService;
 
 class ContatoController extends Controller
 {
@@ -36,7 +37,11 @@ class ContatoController extends Controller
      */
     public function store(StoreContatoRequest $request)
     {
-        //
+        $contato = $request->all();
+        (new ContatoService)->salvarContato($contato);
+        return response()->json([
+            'message' => 'Mensagem enviada com sucesso!'
+        ], 200);
     }
 
     /**

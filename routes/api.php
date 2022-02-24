@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/', function () {
     return response()->json([
         'message' => 'Its Working'
-    ]);
+    ], 200);
 });
 
 Route::post('/contatos', [ContatoController::class, 'store']);
