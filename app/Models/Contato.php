@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Contato extends Model
@@ -14,6 +15,12 @@ class Contato extends Model
         'telefone',
         'mensagem',
         'anexo',
-        'ip'
+        'ip',
+        'created_at'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y h:i:s',
+        'updated_at' => 'datetime:d/m/Y h:i:s',
     ];
 }

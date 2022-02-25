@@ -25,4 +25,6 @@ Route::get('/', function () {
     ], 200);
 });
 
+Route::get('/contatos', [ContatoController::class, 'index']);
 Route::post('/contatos', [ContatoController::class, 'store']);
+Route::get('/contatos/anexo', [ContatoController::class, 'download']);

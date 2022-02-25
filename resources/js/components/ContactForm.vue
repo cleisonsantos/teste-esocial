@@ -1,7 +1,8 @@
 <template>
   <div>
+    <a href="#/contatos" class="btn btn-secondary my-3">Todos os contatos</a>
     <h4>Entre em contato:</h4>
-    <form v-on:submit.prevent="handleSubmit">
+    <form id="form" v-on:submit.prevent="handleSubmit">
       <div class="mb-3">
         <!-- <label for="" class="form-label">Email address</label> -->
         <input
@@ -123,7 +124,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.returnUserIP();
+      //   this.returnUserIP();
       let formData = new FormData();
       formData.append("nome", this.form.nome);
       formData.append("email", this.form.email);
@@ -134,7 +135,6 @@ export default {
       fetch("api/contatos", {
         headers: {
           Accept: "application/json",
-          //   "Content-Type": "multipart/form-data",
         },
         method: "POST",
         body: formData,
@@ -146,22 +146,19 @@ export default {
           }
           if (res.status == 200) {
             this.success = data.message;
+            this.form.nome = "";
+            this.form.email = "";
+            this.form.telefone = "";
+            this.form.mensagem = "";
+            this.form.ip = "";
+            this.form.anexo = null;
+            document.querySelector('#form').reset(); 
           }
         });
       });
     },
     handleFileInput(e) {
       this.form.anexo = e.target.files[0];
-    },
-    returnUserIP() {
-      return fetch("https://api.ipify.org?format=json")
-        .then((res) => res.json())
-        .then((data) => {
-          this.form.ip = data.ip;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     },
   },
 };
