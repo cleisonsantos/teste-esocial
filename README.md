@@ -17,6 +17,11 @@ npm install && npm run dev
 cp .env.example .env
 ```
 
+#### Gerar as chaves:
+```
+php artisan key:generate
+```
+
 #### Configure todas as variaveis de ambiente do banco de dados(mysql) e do email(smtp, MAIL_TO).
 
 
