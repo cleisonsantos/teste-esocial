@@ -140,7 +140,6 @@ export default {
         body: formData,
       }).then((res) => {
         res.json().then((data) => {
-          console.log(res, data);
           if (data.errors) {
             this.errors = data.errors;
           }

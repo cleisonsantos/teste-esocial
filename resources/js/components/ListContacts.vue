@@ -52,7 +52,6 @@ export default {
       fetch("api/contatos").then((res) => {
         res.json().then((data) => {
           if (data) {
-            console.log(data);
             this.contatos = data;
           }
         });

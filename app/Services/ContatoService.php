@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Mail\SendContactMail;
 use App\Repositories\ContatoRepository;
+use Illuminate\Support\Facades\Mail;
 
 class ContatoService
 {
@@ -10,12 +12,8 @@ class ContatoService
     {
         $anexo = $this->salvarAnexo($dados['anexo']);
         $dados['anexo'] = $anexo;
-        (new ContatoRepository)->registraContato($dados);
-    }
-
-    public function enviaEmail($dados)
-    {
-        
+        $contato = (new ContatoRepository)->registraContato($dados);
+        Mail::to(env('MAIL_TO'))->send(new SendContactMail($contato));
     }
 
     public function salvarAnexo($anexo)
