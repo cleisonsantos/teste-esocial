@@ -43,10 +43,10 @@ class ContatoController extends Controller
     {
         $contato = $request->all();
         $contato['ip'] = $request->getClientIp();
-        (new ContatoService)->salvarContato($contato);
+        $response = (new ContatoService)->salvarContato($contato);
         return response()->json([
-            'message' => 'Mensagem enviada com sucesso!'
-        ], 200);
+            'message' => $response->mensagem
+        ], $response->status);
     }
 
     /**

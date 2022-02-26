@@ -1,6 +1,12 @@
 <template>
-  <div class="main">
-    <component :is="currentView" />
+  <div>
+    <nav class="nav">
+      <a href="#/" class="btn btn-secondary my-3">Home</a>
+      <a href="#/contatos" class="btn btn-secondary my-3">Todos os contatos</a>
+    </nav>
+    <div class="main">
+      <component :is="currentView" />
+    </div>
   </div>
 </template>
 
@@ -33,19 +39,27 @@ export default {
 </script>
 
 <style>
-.main {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column;
-}
 body {
   background-image: linear-gradient(
     to bottom right,
     cornflowerblue,
     aquamarine
   );
+}
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  min-height: 10vh;
+}
+
+.main {
+  display: flex;
+  min-height: 90vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
 }
 </style>

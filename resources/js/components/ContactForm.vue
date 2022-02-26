@@ -1,6 +1,5 @@
 <template>
   <div>
-    <a href="#/contatos" class="btn btn-secondary my-3">Todos os contatos</a>
     <h4>Entre em contato:</h4>
     <form id="form" v-on:submit.prevent="handleSubmit">
       <div class="mb-3">
@@ -103,6 +102,9 @@
     <div v-if="success" class="alert alert-success my-3" role="alert">
       {{ success }}
     </div>
+    <div v-if="warning" class="alert alert-warning my-3" role="alert">
+      {{ warning }}
+    </div>
   </div>
 </template>
 
@@ -120,6 +122,7 @@ export default {
       },
       errors: {},
       success: null,
+      warning: null,
     };
   },
   methods: {
@@ -151,7 +154,17 @@ export default {
             this.form.mensagem = "";
             this.form.ip = "";
             this.form.anexo = null;
-            document.querySelector('#form').reset(); 
+            document.querySelector("#form").reset();
+          }
+          if (res.status == 201) {
+            this.warning = data.message;
+            this.form.nome = "";
+            this.form.email = "";
+            this.form.telefone = "";
+            this.form.mensagem = "";
+            this.form.ip = "";
+            this.form.anexo = null;
+            document.querySelector("#form").reset();
           }
         });
       });
